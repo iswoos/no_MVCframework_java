@@ -1,7 +1,7 @@
-package hello.basic.request;
+package hello.servlet.basic.request;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import hello.basic.HelloData;
+import hello.servlet.basic.HelloData;
 import org.springframework.util.StreamUtils;
 
 import javax.servlet.ServletException;
