@@ -88,3 +88,6 @@ v1 구조
 
 v2 구조
 ![img_5.png](img_5.png)
+
+v3 구조
+![img_6.png](img_6.png)
