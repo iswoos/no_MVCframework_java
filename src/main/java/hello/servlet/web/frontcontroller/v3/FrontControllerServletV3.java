@@ -1,11 +1,15 @@
-package hello.servlet.web.frontcontroller.v3.controller;
+package hello.servlet.web.frontcontroller.v3;
 
+import hello.servlet.web.frontcontroller.ModelView;
 import hello.servlet.web.frontcontroller.MyView;
 import hello.servlet.web.frontcontroller.v2.ControllerV2;
 import hello.servlet.web.frontcontroller.v2.controller.MemberFormControllerV2;
 import hello.servlet.web.frontcontroller.v2.controller.MemberListControllerV2;
 import hello.servlet.web.frontcontroller.v2.controller.MemberSaveControllerV2;
 import hello.servlet.web.frontcontroller.v3.ControllerV3;
+import hello.servlet.web.frontcontroller.v3.controller.MemberFormControllerV3;
+import hello.servlet.web.frontcontroller.v3.controller.MemberListControllerV3;
+import hello.servlet.web.frontcontroller.v3.controller.MemberSaveControllerV3;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,8 +46,29 @@ public class FrontControllerServletV3 extends HttpServlet {
             return;
         }
 
+        //paramMap
+        Map<String, String> paramMap = createParamMap(request);
+
         // 다형성 덕에, 가져온 값에서 오버라이드된, 인터페이스의 메소드를 구현한 것들을 실행한다.
-        MyView view = controller.process(request, response);
-        view.render(request,response);
+        ModelView mv = controller.process(paramMap);
+
+        String viewName = mv.getViewName();// 논리이름 가져오기 ex) new-form
+
+        // ex) "/WEB-INF/views/new-form.jsp"
+        MyView view = viewResolver(viewName);
+
+        view.render(mv.getModel(),request, response);
+
+    }
+
+    private static MyView viewResolver(String viewName) {
+        return new MyView("/WEB-INF/views/" + viewName + ".jsp");
+    }
+
+    private static Map<String, String> createParamMap(HttpServletRequest request) {
+        Map<String, String> paramMap = new HashMap<>();
+        request.getParameterNames().asIterator()
+                .forEachRemaining(paramName -> paramMap.put(paramName, request.getParameter(paramName)));
+        return paramMap;
     }
 }
