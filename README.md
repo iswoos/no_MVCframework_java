@@ -91,3 +91,6 @@ v2 구조
 
 v3 구조
 ![img_6.png](img_6.png)
+
+v4 구조
+![img_7.png](img_7.png)
