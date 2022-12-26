@@ -54,6 +54,7 @@ public class FrontControllerServletV5 extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         // 핸들러 찾아오기
+        // MemberFromControllerV4
         Object handler = getHandler(request);
         if (handler == null) {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
@@ -61,6 +62,7 @@ public class FrontControllerServletV5 extends HttpServlet {
         }
 
         // 핸들러 어뎁터 찾아오기
+        // ControllerV4HandlerAdapter
         MyHandlerAdapter adapter = getHandlerAdapter(handler);
 
         // 어뎁터의 핸들을 통해 ModelView 반환
