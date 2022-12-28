@@ -1,5 +1,6 @@
 package hello.servlet.web.springmvc.old;
 
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.Controller;
