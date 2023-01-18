@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+
+//강의 자료 준비중
 public class MemberFormControllerV1 implements ControllerV1 {
     @Override
     public void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
